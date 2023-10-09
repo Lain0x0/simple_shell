@@ -3,18 +3,12 @@
 /**
  * main - Entry Point
  *
- * @argc : Argument Counter
- *
- * @argv : Argument Vector
- *
- * @envp : Environment Pointer.
- *
  * Description : This code give us The PID
  *
  * Return: Always 0 (Success)
 */
 
-int main(int argc, char *argv[], char *envp[])
+int main(void)
 {
 
 	char input[MAX_INPUT_SIZE];
