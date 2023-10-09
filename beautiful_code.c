@@ -2,22 +2,17 @@
 
 /**
  * main - Entry Point
- * @argc: Argument Counter
- * @argv: Argument Vector
- * @envp: Environment variables
- *
  * Description: This program prints the process ID (PID).
  * Return: Always 0 (Success)
  */
-int main(int argc, char *argv[], char *envp[])
+int main(void)
 {
-	(void)argc;
 
-	int pid_t;
+	int pid;
 
-	pid_t = getpid();
+	pid = getpid();
 
-	printf("The Process ID is: %d\n", pid_t);
+	printf("The Process ID is: %d\n", pid);
 
 	return (0);
 }
