@@ -5,11 +5,11 @@
  *
  * Return: 0 on success
  *
- * @input : user input 
+ * @input: user input 
  *
- * @env : Environment Variable
+ * @env: Environment Variable
  *
- * Decription : Shell Program with C
+ * Decription: Shell Program with C
  *
 */
 

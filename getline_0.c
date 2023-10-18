@@ -78,7 +78,11 @@ int main(void)
 			break;
 		}
 
-		pid_t pid = fork();
+		pid_t pid;
+
+		char buffer[MAX_BUFFER_SIZE];
+
+		pid = fork();
 
 		if (pid == 0)
 

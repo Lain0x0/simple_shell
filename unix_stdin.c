@@ -5,6 +5,8 @@
  *
  * @execute_command: Exexcute Commands
  *
+ * @command command that user enter
+ *
  * Return: Always 0 (success)
  *
  * Description: Shell Program With C
@@ -24,6 +26,7 @@ int main(int argc, char *argv[])
 	}
 
 	FILE *file = fopen(argv[1], "r");
+
 	if (file == NULL)
 
 	{
