@@ -10,8 +10,9 @@
 int main(void)
 {
 	char command[MAX_COMMAND_LENGTH];
-
 	char *args[2];
+	size_t command_length;
+	pid_t pid;
 
 	while (1)
 	{
@@ -23,10 +24,9 @@ int main(void)
 			break;
 		}
 
-		size_t command_length = strlen(command);
+		command_length = strlen(command);
 
 		if (command_length > 0 && command[command_length - 1] == '\n')
-
 		{
 			command[command_length - 1] = '\0';
 		}
@@ -34,48 +34,36 @@ int main(void)
 		args[0] = command;
 		args[1] = NULL;
 
-		pid_t pid = fork();
+		pid = fork();
 
 		if (pid < 0)
-
-
 		{
 			perror("Fork failed");
 			exit(1);
 		}
-
 		else if (pid == 0)
-
 		{
 			if (execvp(command, args) == -1)
-
 			{
 				perror("Execution failed");
 				exit(1);
 			}
 		}
-
 		else
-
 		{
 			int status;
-
 			waitpid(pid, &status, 0);
 
 			if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
-
 			{
 				printf("Command executed successfully.\n");
 			}
-
 			else
-
 			{
 				printf("Command execution failed.\n");
 			}
 		}
 	}
 
-	return (0);
+	return 0;
 }
-

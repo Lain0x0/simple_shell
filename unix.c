@@ -1,57 +1,39 @@
 #include "shell.h"
 
 /**
- * main - Entry Point
- *
  * execute_command - Execute a command in a child process
  *
  * @args : An array of strings containing the command
  *
- * Description : shell by using c #2
- *
- * Return : Always 0 (SUCCESS)
- *
- */
-
+ * Description : Shell by using C #2
+*/
 
 void execute_command(char *args[])
 {
-	pid_t pid, wpid;
-
+	pid_t pid;
 	int status;
 
 	pid = fork();
 
 	if (pid == 0)
-
 	{
 		if (execvp(args[0], args) == -1)
-
 		{
 			perror("execvp");
 		}
-
 		exit(EXIT_FAILURE);
 	}
-
 	else if (pid < 0)
-
 	{
 		perror("fork");
 	}
-
 	else
-
 	{
-
 		do
-
 		{
-			wpid = waitpid(pid, &status, WUNTRACED);
+			waitpid(pid, &status, WUNTRACED);
 		}
-
 		while (!WIFEXITED(status) && !WIFSIGNALED(status));
-
 	}
 }
 
@@ -67,36 +49,29 @@ int main(void)
 		printf("$ ");
 		fgets(input, MAX_INPUT_LENGTH, stdin);
 
-
 		input[strcspn(input, "\n")] = '\0';
 
 		token = strtok(input, " ");
 		arg_count = 0;
 
 		while (token != NULL)
-
 		{
 			args[arg_count] = token;
 			arg_count++;
-
 			token = strtok(NULL, " ");
 		}
 
 		args[arg_count] = NULL;
 
 		if (arg_count > 0)
-
 		{
-			if (strcmp(args[0]
-						, "exit") == 0)
-
+			if (strcmp(args[0], "exit") == 0)
 			{
 				exit(0);
 			}
-
 			execute_command(args);
 		}
 	}
 
-	return (0);
+	return 0;
 }
